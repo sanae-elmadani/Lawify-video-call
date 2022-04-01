@@ -19,7 +19,7 @@ showChat.addEventListener("click", () => {
   document.querySelector(".header__back").style.display = "block";
 });
 
-const user = prompt("Enter your name");
+const user = prompt("Entrez votre nom avant de vous connecter.");
 
 var peer = new Peer(undefined, {
   path: "/peerjs",
@@ -122,12 +122,14 @@ muteButton.addEventListener("click", () => {
   const enabled = myVideoStream.getAudioTracks()[0].enabled;
   if (enabled) {
     myVideoStream.getAudioTracks()[0].enabled = false;
-    html = `<i class="fas fa-microphone-slash"></i>`;
+    html = `<i class="unmute fas fa-microphone-slash"></i>
+    <span class="unmute">Unmute</span>`;
     muteButton.classList.toggle("background__red");
     muteButton.innerHTML = html;
   } else {
     myVideoStream.getAudioTracks()[0].enabled = true;
-    html = `<i class="fas fa-microphone"></i>`;
+    html = `<i class="fas fa-microphone"></i>
+    <span >Mute</span>`;
     muteButton.classList.toggle("background__red");
     muteButton.innerHTML = html;
   }
@@ -137,12 +139,14 @@ stopVideo.addEventListener("click", () => {
   const enabled = myVideoStream.getVideoTracks()[0].enabled;
   if (enabled) {
     myVideoStream.getVideoTracks()[0].enabled = false;
-    html = `<i class="fas fa-video-slash"></i>`;
+    html = `<i class=" unmute fas fa-video-slash"></i>
+    <span class="unmute">Resume Video</span>`;
     stopVideo.classList.toggle("background__red");
     stopVideo.innerHTML = html;
   } else {
     myVideoStream.getVideoTracks()[0].enabled = true;
-    html = `<i class="fas fa-video"></i>`;
+    html = `<i class="fas fa-video"></i>
+    <span class="">Pause Video</span> `;
     stopVideo.classList.toggle("background__red");
     stopVideo.innerHTML = html;
   }
@@ -160,7 +164,7 @@ socket.on("createMessage", (message, userName) => {
     messages.innerHTML +
     `<div class="message">
         <b><i class="far fa-user-circle"></i> <span> ${
-          userName === user ? "me" : userName
+          userName === user ? "Moi" : userName
         }</span> </b>
         <span>${message}</span>
     </div>`;
